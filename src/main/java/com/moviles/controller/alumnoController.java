@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moviles.entity.Alumno;
 import com.moviles.services.alumnoService;
 import com.moviles.utils.Mensajes;
+import com.moviles.utils.Utils;
 
 @RestController
 @RequestMapping("/crudAlumno")
-@CrossOrigin(origins ="http://localhost:4200")
+@CrossOrigin(origins = Utils.URL_CROSS_ORIGIN)
 public class alumnoController {
 	
 

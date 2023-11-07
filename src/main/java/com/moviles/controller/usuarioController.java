@@ -22,10 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moviles.entity.Usuario;
 import com.moviles.services.UsuarioService;
 import com.moviles.utils.Mensajes;
+import com.moviles.utils.Utils;
 
 @RestController
 @RequestMapping("/crudUsuario")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = Utils.URL_CROSS_ORIGIN)
 public class usuarioController {
 	
 	@Autowired 
