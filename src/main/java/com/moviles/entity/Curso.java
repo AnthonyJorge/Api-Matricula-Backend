@@ -6,6 +6,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ import lombok.Setter;
 @Table(name="curso")
 public class Curso {
 
+	@Column(name = "idcurso")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCurso;
@@ -34,6 +36,7 @@ public class Curso {
 	private String grado;
 	private String turno;
 	
+	@Column(name="fecharegistro")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date fechaRegistro;

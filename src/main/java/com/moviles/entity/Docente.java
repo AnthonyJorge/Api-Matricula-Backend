@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,11 +27,14 @@ import lombok.Setter;
 @Table(name="docente")
 public class Docente {
 
+	@Column(name = "iddocente")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDocente;
 	private String nombre;
+	@Column(name="apellidopa")
 	private String apellidoPa;
+	@Column(name="apellidoma")
 	private String apellidoMa;
 	private String telefono;
 	private String edad;
@@ -38,6 +42,7 @@ public class Docente {
 	private String correo;
 	private String sexo;
 	
+	@Column(name="fecharegistro")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" , timezone = "America/Lima")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

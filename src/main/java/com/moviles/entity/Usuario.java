@@ -2,6 +2,7 @@ package com.moviles.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,7 @@ import lombok.ToString;
 @Table(name = "usuario")
 public class Usuario {
 
+	@Column(name="idusuario")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;
@@ -34,6 +36,7 @@ public class Usuario {
 	private String correo;
 	private String rol;
 	
+	@Column(name="fecharegistro")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date fechaRegistro;
