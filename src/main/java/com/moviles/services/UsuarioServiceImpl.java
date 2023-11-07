@@ -19,11 +19,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 	private usuarioRepository repository;
 	
 
-	@Override
-	public Usuario buscaPorLogin(String login) {
-		return repository.findByLogin(login);
-	}
-
 
 	@Override
 	public Usuario agregarUsario(Usuario usuario) {
@@ -41,7 +36,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return repository.save(Usuario);
 	}
 	
-
 	@Override
 	public void eliminarUsuario(int idUsuario) {
 		repository.deleteById(idUsuario);

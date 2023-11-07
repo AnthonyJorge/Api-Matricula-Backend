@@ -32,6 +32,7 @@ public class Usuario {
 	private String login;
 	private String password;
 	private String correo;
+	private String rol;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")

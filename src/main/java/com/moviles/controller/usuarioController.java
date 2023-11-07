@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +30,7 @@ public class usuarioController {
 	
 	@Autowired 
 	private UsuarioService usuService;
-	
+
 	@GetMapping("/listarUsuario")
 	@ResponseBody
 	public ResponseEntity<List<Usuario>> listarUsuario(){
@@ -43,8 +44,8 @@ public class usuarioController {
 		HashMap<String, Object> salida = new HashMap<>();
 		List<Usuario> validarUsuario = usuService.listarTodos();
 
-		
 		obj.setFechaRegistro(new Date());
+		
 
 		if (validarUsuario.stream()
 				.anyMatch(c -> c.getDni().equals(obj.getDni()))) {
@@ -62,17 +63,13 @@ public class usuarioController {
 		return ResponseEntity.ok(salida);
 	}
 
+
 	@PutMapping("/actualizarUsuario")
 	@ResponseBody
 	public ResponseEntity<?> actualizarUsuario(@RequestBody Usuario obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Usuario> validarCurso = usuService.listarTodos();
-
 		obj.setFechaRegistro(new Date());
-		if (validarCurso.stream()
-				.anyMatch(a -> a.getDni().equals(obj.getDni()) && a.getIdUsuario() != obj.getIdUsuario())) {
-			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
-		} else {
+
 
 			Usuario objSlida = usuService.actualizarUsuario(obj);
 			if (objSlida == null) {
@@ -80,7 +77,7 @@ public class usuarioController {
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
 			}
-		}
+		
 		return ResponseEntity.ok(salida);
 
 	}

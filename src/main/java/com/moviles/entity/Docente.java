@@ -36,7 +36,7 @@ public class Docente {
 	private String edad;
 	private String dni;
 	private String correo;
-	
+	private String sexo;
 	
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" , timezone = "America/Lima")

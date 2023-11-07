@@ -23,10 +23,6 @@ public class alumnoServicelmp implements alumnoService{
 		return rpy.save(alumno);
 	}
 
-	@Override
-	public List<Alumno> listarAlumnoPorNombre(String nombre) {
-		return rpy.listaPorNombre(nombre);
-	}
 
 	@Override
 	public void eliminarAlumno(int idAlumno) {

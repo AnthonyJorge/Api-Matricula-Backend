@@ -31,22 +31,6 @@ public class alumnoController {
 	@Autowired
 	private alumnoService alService;
 
-	@GetMapping("/listarAlumnoPorNombre/{nom}")
-	@ResponseBody
-	public ResponseEntity<List<Alumno>> listaAlumnoPorNombre(@PathVariable("nom") String nom) {
-		List<Alumno> lista = null;
-		try {
-			if (nom.equals("todos")) {
-				lista = alService.listarAlumnoPorNombre("%");
-			} else {
-				lista = alService.listarAlumnoPorNombre("%" + nom + "%");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ResponseEntity.ok(lista);
-	}
-	
 
 	@GetMapping("/listarAlumno")
 	@ResponseBody

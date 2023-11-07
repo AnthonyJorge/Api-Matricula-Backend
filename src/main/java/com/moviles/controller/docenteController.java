@@ -30,21 +30,6 @@ public class docenteController {
 	@Autowired
 	private docenteService doService;
 
-	@GetMapping("listarDocentePorNombre/{nom}")
-	@ResponseBody
-	public ResponseEntity<List<Docente>> listaDocentePorNombre(@PathVariable("nom") String nom) {
-		List<Docente> lista = null;
-		try {
-			if (nom.equals("todos")) {
-				lista = doService.listarDocentePorNombre("%");
-			} else {
-				lista = doService.listarDocentePorNombre("%" + nom + "%");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ResponseEntity.ok(lista);
-	}
 
 	@GetMapping("/listarDocente")
 	@ResponseBody

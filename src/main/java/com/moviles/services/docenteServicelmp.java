@@ -24,10 +24,6 @@ public class docenteServicelmp implements docenteService{
 		return rpy.save(docente);
 	}
 
-	@Override
-	public List<Docente> listarDocentePorNombre(String nombre) {
-		return rpy.listaPorNombre(nombre);
-	}
 
 	@Override
 	public void eliminarDocente(int idDocente) {

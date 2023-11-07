@@ -20,31 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moviles.entity.Curso;
 import com.moviles.services.cursoService;
 import com.moviles.utils.Mensajes;
+import com.moviles.utils.Utils;
 
 @RestController
 @RequestMapping("/crudCurso")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = Utils.URL_CROSS_ORIGIN)
 public class cursoController {
 
 	@Autowired
 	private cursoService cuService;
-
-	@GetMapping("/listarCursoPorNombre/{nom}")
-	@ResponseBody
-	public ResponseEntity<List<Curso>> listaCursoPorNombre(@PathVariable("nom") String nom) {
-		List<Curso> lista = null;
-		try {
-			if (nom.equals("todos")) {
-				lista = cuService.listaCursoPorNombre("%");
-			} else {
-				lista = cuService.listaCursoPorNombre("%" + nom + "%");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ResponseEntity.ok(lista);
-	}
-	
 
 	@GetMapping("/listarCursos")
 	@ResponseBody

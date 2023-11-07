@@ -18,10 +18,6 @@ public class cursoServicelmp implements cursoService{
 		return rpy.save(curso);
 	}
 
-	@Override
-	public List<Curso> listaCursoPorNombre(String nombre) {
-		return rpy.listaPorNombre(nombre);
-		}
 
 	@Override
 	public void eliminarDocente(int idCurso) {

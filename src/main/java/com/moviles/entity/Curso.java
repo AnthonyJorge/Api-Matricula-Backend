@@ -32,7 +32,7 @@ public class Curso {
 	private int idCurso;
 	private String nombre;
 	private String grado;
-	private String curso;
+	private String turno;
 	
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
