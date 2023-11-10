@@ -1,5 +1,6 @@
 package com.moviles.controller;
 
+import java.io.Console;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class cursoController {
 	@Autowired
 	private cursoService cuService;
 
-	@GetMapping("/listarCursos")
+	@GetMapping("/listarCurso")
 	@ResponseBody
 	public ResponseEntity<List<Curso>> listarCursos(){
 		List<Curso> listado = cuService.listarTodos();
@@ -41,15 +42,14 @@ public class cursoController {
 	@ResponseBody
 	public ResponseEntity<?> insertarCurso(@RequestBody Curso obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Curso> validarCurso = cuService.listarTodos();
 
 		
 		obj.setFechaRegistro(new Date());
 
-		if (validarCurso.stream()
-				.anyMatch(c -> c.getNombre().equals(obj.getNombre()) && c.getIdCurso() != obj.getIdCurso())) {
-			salida.put("mensaje", Mensajes.MENSAJE_CURSONOMBRE_EXISTE);
-		} else {
+		if(obj.getIdCurso() == 0) {
+			System.out.println("no puede estar vacio");
+		}
+		else {
 			Curso objSalida = cuService.agregarCurso(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
@@ -66,12 +66,11 @@ public class cursoController {
 	@ResponseBody
 	public ResponseEntity<?> actualizarCurso(@RequestBody Curso obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Curso> validarCurso = cuService.listarTodos();
 
 		obj.setFechaRegistro(new Date());
-		if (validarCurso.stream()
-				.anyMatch(c -> c.getNombre().equals(obj.getNombre()) && c.getIdCurso() != obj.getIdCurso())) {
-			salida.put("mensaje", Mensajes.MENSAJE_CURSONOMBRE_EXISTE);
+		
+		if(obj.getIdCurso() == 0) {
+			System.out.println("no puede estar vacio");
 		} else {
 
 			Curso objSlida = cuService.actualizarCurso(obj);

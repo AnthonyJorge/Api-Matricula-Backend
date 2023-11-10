@@ -43,12 +43,11 @@ public class docenteController {
 	@ResponseBody
 	public ResponseEntity<?> insertarDocente(@RequestBody Docente obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Docente> validarDocente = doService.listarTodos();
 
 		obj.setFechaRegistro(new Date());
 
-		if (validarDocente.stream().anyMatch(a -> a.getDni().equals(obj.getDni()))) {
-			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
+		if(obj.getIdDocente() == 0) {
+			System.out.println("no puede estar vacio");
 		} else {
 			Docente objSalida = doService.agregarDocente(obj);
 			if (objSalida == null) {
@@ -66,12 +65,10 @@ public class docenteController {
 	@ResponseBody
 	public ResponseEntity<?> actualizarDocente(@RequestBody Docente obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Docente> validarDocente = doService.listarTodos();
 
 		obj.setFechaRegistro(new Date());
-		if (validarDocente.stream()
-				.anyMatch(c -> c.getDni().equals(obj.getDni()) && c.getIdDocente() != obj.getIdDocente())) {
-			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
+		if(obj.getIdDocente() == 0) {
+			System.out.println("no puede estar vacio");
 		} else {
 
 			Docente objSlida = doService.actualizarDocentes(obj);

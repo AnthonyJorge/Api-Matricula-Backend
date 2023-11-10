@@ -43,14 +43,12 @@ public class usuarioController {
 	@ResponseBody
 	public ResponseEntity<?> insertarUsuario(@RequestBody Usuario obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Usuario> validarUsuario = usuService.listarTodos();
 
 		obj.setFechaRegistro(new Date());
 		
 
-		if (validarUsuario.stream()
-				.anyMatch(c -> c.getDni().equals(obj.getDni()))) {
-			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
+		if(obj.getIdUsuario() == 0) {
+			System.out.println("no puede estar vacio");
 		} else {
 			Usuario objSalida = usuService.agregarUsario(obj);
 			if (objSalida == null) {
@@ -69,16 +67,19 @@ public class usuarioController {
 	@ResponseBody
 	public ResponseEntity<?> actualizarUsuario(@RequestBody Usuario obj) {
 		HashMap<String, Object> salida = new HashMap<>();
+		
 		obj.setFechaRegistro(new Date());
 
-
+		if(obj.getIdUsuario() == 0) {
+			System.out.println("no puede estar vacio");
+		}else {
 			Usuario objSlida = usuService.actualizarUsuario(obj);
 			if (objSlida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_ERROR);
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
 			}
-		
+		}
 		return ResponseEntity.ok(salida);
 
 	}

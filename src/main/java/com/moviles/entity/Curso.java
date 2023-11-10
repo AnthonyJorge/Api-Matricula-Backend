@@ -30,7 +30,6 @@ public class Curso {
 
 	@Column(name = "idcurso")
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCurso;
 	private String nombre;
 	private String grado;
@@ -40,6 +39,4 @@ public class Curso {
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date fechaRegistro;
-
-	
 }

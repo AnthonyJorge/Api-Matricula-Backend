@@ -29,7 +29,6 @@ public class Docente {
 
 	@Column(name = "iddocente")
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDocente;
 	private String nombre;
 	@Column(name="apellidopa")

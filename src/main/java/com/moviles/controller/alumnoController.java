@@ -44,14 +44,11 @@ public class alumnoController {
 	@ResponseBody
 	public ResponseEntity<?> insertarAlumno(@RequestBody Alumno obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Alumno> validarAlumno = alService.listarTodos();
 
 		
 		obj.setFechaRegistro(new Date());
-
-		if (validarAlumno.stream()
-				.anyMatch(c -> c.getDni().equals(obj.getDni()))) {
-			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
+		if(obj.getIdAlumno() == 0) {
+			System.out.println("no puede estar vacio");
 		} else {
 			Alumno objSalida = alService.agregarAlumno(obj);
 			if (objSalida == null) {
@@ -69,12 +66,10 @@ public class alumnoController {
 	@ResponseBody
 	public ResponseEntity<?> actualizarAlumno(@RequestBody Alumno obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Alumno> validarCurso = alService.listarTodos();
 
 		obj.setFechaRegistro(new Date());
-		if (validarCurso.stream()
-				.anyMatch(a -> a.getDni().equals(obj.getDni()) && a.getIdAlumno() != obj.getIdAlumno())) {
-			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
+		if(obj.getIdAlumno() == 0) {
+			System.out.println("no puede estar vacio");
 		} else {
 
 			Alumno objSlida = alService.actualizarAlumno(obj);
