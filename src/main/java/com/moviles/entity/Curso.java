@@ -30,6 +30,7 @@ public class Curso {
 
 	@Column(name = "idcurso")
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCurso;
 	private String nombre;
 	private String grado;

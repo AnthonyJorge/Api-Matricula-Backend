@@ -21,11 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moviles.entity.Docente;
 import com.moviles.services.docenteService;
 import com.moviles.utils.Mensajes;
-import com.moviles.utils.Utils;
 
 @RestController
 @RequestMapping("/crudDocente")
-@CrossOrigin(origins = Utils.URL_CROSS_ORIGIN)
 public class docenteController {
 
 	@Autowired

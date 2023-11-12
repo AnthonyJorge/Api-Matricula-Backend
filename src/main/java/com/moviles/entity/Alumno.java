@@ -29,7 +29,7 @@ public class Alumno {
 
 	@Column(name = "idalumno")
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAlumno;
 	private String nombre;
 	@Column(name="apellidopa")

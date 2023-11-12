@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,78 +17,70 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moviles.entity.Usuario;
-import com.moviles.services.UsuarioService;
+import com.moviles.entity.Matricula;
+import com.moviles.services.matriculaService;
 import com.moviles.utils.Mensajes;
-import com.moviles.utils.Utils;
+
 
 @RestController
-@RequestMapping("/crudUsuario")
-@CrossOrigin(origins = Utils.URL_CROSS_ORIGIN)
-public class usuarioController {
-	
-	@Autowired 
-	private UsuarioService usuService;
+@RequestMapping("/crudMatricula")
+public class matriculaController {
+	@Autowired
+	private matriculaService maService;
 
-	@GetMapping("/listarUsuario")
+	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<Usuario>> listarUsuario(){
-		List<Usuario> listado = usuService.listarTodos();
+	public ResponseEntity<List<Matricula>> listarDocente() {
+		List<Matricula> listado = maService.listarTodo();
 		return ResponseEntity.ok(listado);
 	}
-	
-	@PostMapping("/agregarUsuario")
+
+	@PostMapping
 	@ResponseBody
-	public ResponseEntity<?> insertarUsuario(@RequestBody Usuario obj) {
+	public ResponseEntity<?> insertarDocente(@RequestBody Matricula obj) {
 		HashMap<String, Object> salida = new HashMap<>();
+	
 
 		obj.setFechaRegistro(new Date());
-		
 
-		if(obj.getIdUsuario() == 0) {
-			System.out.println("no puede estar vacio");
-		} else {
-			Usuario objSalida = usuService.agregarUsario(obj);
+			Matricula objSalida = maService.agregarMatricula(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
 
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_EXITOSO);
 			}
-		}
+	
 
 		return ResponseEntity.ok(salida);
 	}
 
-
-	@PutMapping("/actualizarUsuario")
+	@PutMapping("/actualizarMatricula")
 	@ResponseBody
-	public ResponseEntity<?> actualizarUsuario(@RequestBody Usuario obj) {
+	public ResponseEntity<?> actualizarMatricula(@RequestBody Matricula obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		
-		obj.setFechaRegistro(new Date());
+	
 
-		if(obj.getIdUsuario() == 0) {
-			System.out.println("no puede estar vacio");
-		}else {
-			Usuario objSlida = usuService.actualizarUsuario(obj);
+		obj.setFechaRegistro(new Date());
+		
+			Matricula objSlida = maService.actualizarMatricula(obj);
 			if (objSlida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_ERROR);
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
 			}
-		}
+
 		return ResponseEntity.ok(salida);
 
 	}
 
-	@DeleteMapping("/eliminarUsuario/{id}")
+	@DeleteMapping("/eliminarMatricula/{id}")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> eliminarUsuario(@PathVariable("id") int idUsuario) {
+	public ResponseEntity<Map<String, Object>> eliminarMatricula(@PathVariable("id") int idAlumno) {
 		Map<String, Object> salida = new HashMap<>();
 
 		try {
-			usuService.eliminarUsuario(idUsuario);
+			maService.eliminarMatricula(idAlumno);
 			salida.put("mensaje", Mensajes.MENSAJE_ELI_EXITOSO);
 
 		} catch (Exception e) {
@@ -99,5 +89,4 @@ public class usuarioController {
 		}
 		return ResponseEntity.ok(salida);
 	}
-
 }
