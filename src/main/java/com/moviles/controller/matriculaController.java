@@ -28,21 +28,24 @@ public class matriculaController {
 	@Autowired
 	private matriculaService maService;
 
-	@GetMapping
+	@GetMapping("/listarAlumno")
 	@ResponseBody
-	public ResponseEntity<List<Matricula>> listarDocente() {
+	public ResponseEntity<List<Matricula>> listarMatricula() {
 		List<Matricula> listado = maService.listarTodo();
 		return ResponseEntity.ok(listado);
 	}
 
-	@PostMapping
+	@PostMapping("/agregarDocente")
 	@ResponseBody
-	public ResponseEntity<?> insertarDocente(@RequestBody Matricula obj) {
+	public ResponseEntity<?> insertarMatricula(@RequestBody Matricula obj) {
 		HashMap<String, Object> salida = new HashMap<>();
 	
 
 		obj.setFechaRegistro(new Date());
 
+		if(obj.getIdMatricula() == 0) {
+			System.out.println("no puede estar vacio");
+		} else {
 			Matricula objSalida = maService.agregarMatricula(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
@@ -50,7 +53,7 @@ public class matriculaController {
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_EXITOSO);
 			}
-	
+		}
 
 		return ResponseEntity.ok(salida);
 	}
@@ -62,16 +65,19 @@ public class matriculaController {
 	
 
 		obj.setFechaRegistro(new Date());
-		
+		obj.setFechaRegistro(new Date());
+		if(obj.getIdMatricula() == 0) {
+			System.out.println("no puede estar vacio");
+		} else {
 			Matricula objSlida = maService.actualizarMatricula(obj);
 			if (objSlida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_ERROR);
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
 			}
-
+		}
 		return ResponseEntity.ok(salida);
-
+		
 	}
 
 	@DeleteMapping("/eliminarMatricula/{id}")
@@ -79,6 +85,8 @@ public class matriculaController {
 	public ResponseEntity<Map<String, Object>> eliminarMatricula(@PathVariable("id") int idAlumno) {
 		Map<String, Object> salida = new HashMap<>();
 
+		
+		
 		try {
 			maService.eliminarMatricula(idAlumno);
 			salida.put("mensaje", Mensajes.MENSAJE_ELI_EXITOSO);
