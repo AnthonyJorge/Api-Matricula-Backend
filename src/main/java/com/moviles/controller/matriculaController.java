@@ -28,14 +28,14 @@ public class matriculaController {
 	@Autowired
 	private matriculaService maService;
 
-	@GetMapping("/listarAlumno")
+	@GetMapping("/listarMatricula")
 	@ResponseBody
 	public ResponseEntity<List<Matricula>> listarMatricula() {
 		List<Matricula> listado = maService.listarTodo();
 		return ResponseEntity.ok(listado);
 	}
 
-	@PostMapping("/agregarDocente")
+	@PostMapping("/agregarMatricula")
 	@ResponseBody
 	public ResponseEntity<?> insertarMatricula(@RequestBody Matricula obj) {
 		HashMap<String, Object> salida = new HashMap<>();
@@ -43,9 +43,7 @@ public class matriculaController {
 
 		obj.setFechaRegistro(new Date());
 
-		if(obj.getIdMatricula() == 0) {
-			System.out.println("no puede estar vacio");
-		} else {
+	
 			Matricula objSalida = maService.agregarMatricula(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
@@ -53,8 +51,7 @@ public class matriculaController {
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_EXITOSO);
 			}
-		}
-
+		
 		return ResponseEntity.ok(salida);
 	}
 
@@ -66,15 +63,13 @@ public class matriculaController {
 
 		obj.setFechaRegistro(new Date());
 		obj.setFechaRegistro(new Date());
-		if(obj.getIdMatricula() == 0) {
-			System.out.println("no puede estar vacio");
-		} else {
+		
 			Matricula objSlida = maService.actualizarMatricula(obj);
 			if (objSlida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_ERROR);
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
-			}
+			
 		}
 		return ResponseEntity.ok(salida);
 		

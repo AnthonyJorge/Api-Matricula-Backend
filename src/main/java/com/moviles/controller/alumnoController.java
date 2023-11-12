@@ -46,16 +46,14 @@ public class alumnoController {
 
 		
 		obj.setFechaRegistro(new Date());
-		if(obj.getIdAlumno() == 0) {
-			System.out.println("no puede estar vacio");
-		} else {
+		
 			Alumno objSalida = alService.agregarAlumno(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
 
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_EXITOSO);
-			}
+			
 		}
 
 		return ResponseEntity.ok(salida);
@@ -67,16 +65,13 @@ public class alumnoController {
 		HashMap<String, Object> salida = new HashMap<>();
 
 		obj.setFechaRegistro(new Date());
-		if(obj.getIdAlumno() == 0) {
-			System.out.println("no puede estar vacio");
-		} else {
-
+		
 			Alumno objSlida = alService.actualizarAlumno(obj);
 			if (objSlida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_ERROR);
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
-			}
+			
 		}
 		return ResponseEntity.ok(salida);
 

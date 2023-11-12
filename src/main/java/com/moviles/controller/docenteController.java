@@ -44,16 +44,14 @@ public class docenteController {
 
 		obj.setFechaRegistro(new Date());
 
-		if(obj.getIdDocente() == 0) {
-			System.out.println("no puede estar vacio");
-		} else {
+		
 			Docente objSalida = doService.agregarDocente(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
 
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_EXITOSO);
-			}
+			
 		}
 
 		return ResponseEntity.ok(salida);
@@ -65,9 +63,7 @@ public class docenteController {
 		HashMap<String, Object> salida = new HashMap<>();
 
 		obj.setFechaRegistro(new Date());
-		if(obj.getIdDocente() == 0) {
-			System.out.println("no puede estar vacio");
-		} else {
+	
 
 			Docente objSlida = doService.actualizarDocentes(obj);
 			if (objSlida == null) {
@@ -75,7 +71,7 @@ public class docenteController {
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
 			}
-		}
+		
 		return ResponseEntity.ok(salida);
 
 	}
