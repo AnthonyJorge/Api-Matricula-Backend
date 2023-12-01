@@ -33,7 +33,6 @@ public class Matricula {
 	@Column(name = "fecharegistro")
 	private Date fechaRegistro;
 	private double precio;
-	private double descuento;
 	@Column(name = "preciototal")
 	private double precioTotal;
 	@Column(name = "tipoPago")
