@@ -2,6 +2,8 @@ package com.moviles.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.moviles.entity.Alumno;
@@ -17,6 +19,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,13 +34,17 @@ public class Matricula {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMatricula;
-	@Column(name = "fecharegistro")
-	private Date fechaRegistro;
 	private double precio;
 	@Column(name = "preciototal")
 	private double precioTotal;
 	@Column(name = "tipoPago")
 	private String tipoPago;
+	
+	@Column(name="fecharegistro")
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" , timezone = "America/Lima")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date fechaRegistro;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch =  FetchType.LAZY)
